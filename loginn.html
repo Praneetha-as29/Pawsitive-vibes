@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Pawsitive Vibes</title>
+    <style>
+        body {
+            background-color: #8B4513;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #A0522D;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            width: 350px;
+            text-align: center;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background: #FFD700;
+            color: #8B4513;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #FFA500;
+        }
+        a {
+            display: block;
+            color: #FFD700;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label>Username:</label>
+            <input type="text" id="username" required>
+
+            <label>Password:</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>New user? <a href="register.html">Register here</a></p>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            // Get stored user data
+            let storedUser = localStorage.getItem("user");
+
+            if (!storedUser) {
+                alert("No user found! Please register first.");
+                return;
+            }
+
+            let user = JSON.parse(storedUser);
+
+            if (username === user.name && password === user.password) {
+                alert("✅ Login successful!");
+                window.location.href = "home.html"; // Redirect to home page
+            } else {
+                alert("❌ Invalid username or password.");
+            }
+        });
+    </script>
+
+</body>
+</html>
